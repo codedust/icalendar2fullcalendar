@@ -15,6 +15,7 @@ function jcal_events(jcal, event_callback, recur_event_callback) {
 }
 
 function event_duration(event) {
+    if (event.getFirstPropertyValue('dtend') === null) return 1000*60*60; // default to 1h
     return new Date(event.getFirstPropertyValue('dtend').toJSDate() - event.getFirstPropertyValue('dtstart').toJSDate()).getTime()
 }
 
@@ -37,4 +38,3 @@ function expand_recur_event(event, dtstart, dtend, event_callback) {
         }
     }
 }
-
